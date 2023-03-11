@@ -16,11 +16,11 @@ export const ProductsContext = createContext([]);
 function App() {
   const [products, setProducts] = useState([]);
 
+  //FETCH DATA 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         let response = await axios.get("https://dummyjson.com/products");
-        console.log(response);
         setProducts(response.data.products);
       } catch (error) {
         console.log(`The error is' ${error}`);
@@ -56,7 +56,7 @@ function App() {
           </Route>
           <Route
             path="/products/:id"
-            element={<OneProduct products={products} />}
+            element={<OneProduct  />}
           />
         </Routes>
       </ProductsContext.Provider>
@@ -65,5 +65,3 @@ function App() {
 }
 export default App;
 
-//
-//);

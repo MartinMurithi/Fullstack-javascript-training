@@ -2,9 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ProductsContext } from "../App";
 
-function OneProduct({ products }) {
+function OneProduct() {
 
-  const oneProduct = useContext(ProductsContext);
+  const products = useContext(ProductsContext);
 
   const { id } = useParams();
   const [product, setProduct] = useState();
@@ -12,7 +12,7 @@ function OneProduct({ products }) {
     let product = products.find((p) => p.id === +id);
     
     setProduct(product);
-  }, [id, oneProduct]);
+  }, [id, products]);
   return (
     <div className="productCard">
      <div className="oneProductImg">
