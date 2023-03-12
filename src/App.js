@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Fetch from "./components/Fetch";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import OneProduct from "./components/OneProduct";
 import Products from "./components/Products";
 import ProductsDisplay from "./components/ProductsDisplay";
-import Test from "./components/Test";
+import Cart from './components/Cart'
 import axios from "axios";
 import { createContext } from "react";
 
@@ -58,6 +57,7 @@ function App() {
             path="/products/:id"
             element={<OneProduct  />}
           />
+          <Route path="/cart" element={<Cart/>} />
         </Routes>
       </ProductsContext.Provider>
     </>

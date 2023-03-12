@@ -3,33 +3,44 @@ import { useParams } from "react-router-dom";
 import { ProductsContext } from "../App";
 
 function OneProduct() {
-
   const products = useContext(ProductsContext);
 
   const { id } = useParams();
   const [product, setProduct] = useState();
   useEffect(() => {
     let product = products.find((p) => p.id === +id);
-    
+
     setProduct(product);
   }, [id, products]);
+
+  const handleCart = (id) => {
+    let p = products.find((product) => product.id === parseInt(id, 10));
+    console.log(p);
+  };
+
   return (
     <div className="productCard">
-     <div className="oneProductImg">
+      <div className="oneProductImg">
         <img src={product?.images[0]} alt="" />
-        
-     </div>
-     <div className="oneProductDetails">
+      </div>
+      <div className="oneProductDetails">
         <span className="pTitle">{product?.title}</span>
         <span className="pDesc">{product?.description}</span>
         <span className="priceDetails">
-            <span className="pPrice">Price: ${product?.price}</span>
-            <span className="pDiscount">Discount: {product?.discountPercentage}%</span>
+          <span className="pPrice">Price: ${product?.price}</span>
+          <span className="pDiscount">
+            Discount: {product?.discountPercentage}%
+          </span>
         </span>
-        <span className="addItemToCart">
-          Add to cart
-        </span>
-     </div>
+        <button
+          className="addtoCartBtn"
+          onClick={() => {
+            handleCart(product.id);
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,15 +1,43 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ProductsContext } from "../context";
+import { CartContext } from "../context";
+
+
+const reducer = (products, action) => {
+  switch (action.type) {
+    case 'ADDPRODUCT': {
+      return [
+        ...products,
+        {
+          id: action.id,
+          title: action.title,
+          image: action.thumbnail,
+          price: action.price
+          
+        }
+      ]
+    }
+      
+  
+    default:
+      break;
+  }
+}
 
 
 function ProductsDisplay({  category }) {
   let products = useContext(ProductsContext)
   const navigate = useNavigate();
+  const { id } = useParams();
   const [data, setData] = useState(products);
   const handleNavigation = (id) => {
     navigate(`/products/${id}`);
   };
+
+  const [state, dispatch] = useReducer();
+
+  const [cartProduct, setProductCart] = useState([]);
 
   useEffect(()=>{
     if(category==='all'){
@@ -21,9 +49,16 @@ function ProductsDisplay({  category }) {
     }
 
   }, [products, category])
+
+  const handleCart = (id) => {
+    let product = products.find(product=> product.id === parseInt(id, 10))
+    console.log(product);
+    setProductCart(product);
+  }
  
   return (
-    <div className="productsContainer">
+    <CartContext.Provider value={products}>
+      <div className="productsContainer">
       {data && data.length > 0 ? (
         data.map((product) => {
            
@@ -44,7 +79,7 @@ function ProductsDisplay({  category }) {
                   <Link to={`/products/${product.id}`}>See more</Link>
                 </span> */}
               </div>
-              <div className="addtoCart">Add to Cart</div>
+              <button className="addtoCartBtn" onClick={()=>{handleCart(product.id)}}>Add to Cart</button>
             </div>
           );
         })
@@ -54,6 +89,9 @@ function ProductsDisplay({  category }) {
         </div>
       )}
     </div>
+    </CartContext.Provider>
+      
+    
   );
 }
 

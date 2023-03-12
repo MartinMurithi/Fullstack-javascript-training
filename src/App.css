@@ -96,10 +96,13 @@ a {
   color: rgb(137, 138, 139);
   font-size: 0.8rem;
 }
-.addtoCart {
+.addtoCartBtn {
   background-color: rgb(223, 138, 47);
   color: white;
   padding: 7px;
+  width: 100%;
+  border-style: none;
+  cursor: pointer;
 }
 .productCard {
   display: flex;
