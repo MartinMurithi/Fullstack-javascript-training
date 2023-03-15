@@ -13,7 +13,7 @@ import { createContext } from "react";
 export const ProductsContext = createContext([]);
 
 function App() {
-  const [products, setProducts] = useState([]);
+  const [productss, setProducts] = useState([]);
 
   //FETCH DATA 
   useEffect(() => {
@@ -21,6 +21,7 @@ function App() {
       try {
         let response = await axios.get("https://dummyjson.com/products");
         setProducts(response.data.products);
+        console.log(response);
       } catch (error) {
         console.log(`The error is' ${error}`);
       }
@@ -30,16 +31,18 @@ function App() {
 
   const [categories, setCategories] = useState([]);
   useEffect(() => {
-    const categories = products.map((p) => p.category);
+    const categories = productss.map((p) => p.category);
 
     const categoriesArr = Array.from(new Set(categories));
     setCategories(categoriesArr);
-  }, [products]);
+  }, [productss]);
   return (
     <>
-      <ProductsContext.Provider value={products}>
-        <Navbar />
+      <Navbar />
+      <ProductsContext.Provider value={productss}>
+       
         <Routes>
+          <Route path="/" element={<Home/>} />
           <Route path={"/products"} element={<Products />}>
             <Route index element={<ProductsDisplay category={"all"} />} />
 

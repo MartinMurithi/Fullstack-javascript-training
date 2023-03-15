@@ -7,12 +7,34 @@ body {
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
+  color: #000;
+  
 }
-.App {
+
+.container{
+  background-image: url(./Image/img.avif);
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
+
+.viewBtn{
+  border-style: none;
+  padding: 7px 10px;
+  background-color: transparent;
+  color: #000;
+  font-size: 15px;
+  border: 1px solid #000;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
 .Navbar {
-  background-color: rgb(223, 138, 47);
-  color: white;
+  background-color: #bbbbbb;
+  color: #000;
   height: 50px;
   width: 100%;
   display: flex;
@@ -28,13 +50,23 @@ a {
 
 .right {
   display: flex;
-  gap: 10px;
-  font-weight: 500;
+  gap: 40px;
+  font-weight: 300;
   
 }
 .right a{
-  color: aliceblue;
+  color: rgb(0, 0, 0);
 }
+
+.right a.active{
+  text-decoration: underline;
+}
+
+.left{
+  font-weight: 800;
+  font-size: 2rem;
+}
+
 .productsLayout {
   display: grid;
   grid-template-columns: 200px 1000px;
@@ -97,8 +129,8 @@ a {
   font-size: 0.8rem;
 }
 .addtoCartBtn {
-  background-color: rgb(223, 138, 47);
-  color: white;
+  background-color: #bbbbbb;
+  color: rgb(0, 0, 0);
   padding: 7px;
   width: 100%;
   border-style: none;
@@ -145,4 +177,43 @@ background-color: rgb(223, 138, 47);
 width: 120px;
 cursor: pointer;
 color: aliceblue;
+}
+
+
+.footer {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+.footerDetails {
+  background-color: black;
+  color: #fff;
+  padding: 50px 0px 15px 0px;
+}
+
+.footerList {
+  list-style: none;
+  text-align: start;
+  margin-left: 40px;
+}
+
+.footerItem{
+  font-size: 0.8rem;
+  padding: 8px;
+  color: #C7C7CD;
+  cursor: pointer;
+}
+
+
+li span{
+  font-size: 1rem;
+  color: white;
+  font-weight: 600;
+}
+
+.footerItem {
+  padding: 5px;
 }

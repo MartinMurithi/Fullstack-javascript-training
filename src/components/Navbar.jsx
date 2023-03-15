@@ -1,16 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function Navbar() {
   return (
     <div className='Navbar'>
-       <div className="left">
-        Products Store
-       </div>
+      <NavLink to='/' className="left">JituMall</NavLink>
        <div className="right">
-        <Link to={"/"}>Home</Link>
-        <Link to={"/products"}>Products </Link>
-        <Link to={"/cart"}>Cart </Link>
+        <NavLink to={"/"}>Home</NavLink>
+        <NavLink to={"/products"}>Products </NavLink>
+        <NavLink to={"/cart"}>Cart </NavLink>
        </div>
     </div>
   )
